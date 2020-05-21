@@ -27,7 +27,7 @@ class trie {
             //console.log(character)
         }
         
-        console.log(`${currentNode.terminationCount} instances of ${q} found in trie`)
+        console.log(`${currentNode.terminationCount} instance(s) of ${q} found in trie`)
     }
     
     //method to insert string s in trie
@@ -37,11 +37,11 @@ class trie {
             //checks if child node from corresponding character already exists
             if(Object.keys(currentNode.childrenNodes).includes(character)){
                 //child node already exists
-                console.log(`child node already exists`)
+                console.log(`child node already exists for character ${character}`)
             }
             else{
                 //child node doesn't exist so new one has to be created
-                console.log(`child node had to be created for character ${character}`)
+                //console.log(`child node had to be created for character ${character}`)
                 currentNode.childrenNodes[character] = new trieNode()
             }
             
@@ -64,5 +64,4 @@ class trie {
 t= new trie()
 t.insertMultiple(data)
 
-
-console.log(JSON.stringify(t.root.childrenNodes))
+// you can query for presence of any faculty name in records using t.query() here
