@@ -1,5 +1,5 @@
 //list containing data in linear fashion
-const data = require("./facultyNames")
+//const data = require("./facultyNames")
 
 class trieNode{
     constructor(){
@@ -12,17 +12,17 @@ class trie {
     constructor(){
         this.root = new trieNode()
     }
-
-    findNearMatches(baseNode,name){
+    
+    findNearMatches(baseNode,name,matches){
         let childrenNodes = baseNode.childrenNodes
         let childrenKeys  = Object.keys(childrenNodes)
         if(baseNode.terminationCount>0){
             console.log("near match found")
             console.log(name)
-            return name
+            matches.push(name)
         }
         for( const childKey of childrenKeys){
-            this.findNearMatches(childrenNodes[childKey],name+childKey)
+            this.findNearMatches(childrenNodes[childKey],name+childKey,matches)
         }
     }
     
@@ -48,15 +48,19 @@ class trie {
         
         if(!baseNode){  //checks first if an exact match even exists
             console.log(`${q} not found in trie`)
+            return []
         }
         else{
             //then report exact matches first
             console.log(`${baseNode.terminationCount} exact matches of ${q} found in trie`)
             
             //then check children of currentNode to find near matches
-
-            this.findNearMatches(baseNode,q)
-            
+            let matches= []
+            for(let i=0;i<baseNode.terminationCount;i++){
+                matches.push(q)
+            }
+            this.findNearMatches(baseNode,q,matches)
+            return matches
         }
         
     }
@@ -94,12 +98,12 @@ class trie {
 
 t= new trie()
 t.insertMultiple(data)
-t.query("MURUGAN V")
 
-for(const x of data){
-    if(x.startsWith("MURUGAN")){
-        //console.log(x)
-    }
-}
+
+// for(const x of data){
+//     if(x.startsWith("MURUGAN")){
+//         //console.log(x)
+//     }
+// }
 //t.query("MURUGAN V")
 // you can query for presence of any faculty name in records using t.query() here

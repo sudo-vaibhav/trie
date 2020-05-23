@@ -1,33 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+h1{
+  font-weight: 700;
+}
+
 .main-container{
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
 }
 
+.collection{
+  border: 0px;
+}
+#search-input{
+  text-transform: uppercase;
+}
+/* 
 .input-field .prefix{
-	color: #2196F3;
+  color: #2196F3;
 }
 
- /* label color */
-   .input-field label {
-     color: #2196F3;
-   }
-   .input-field input[type=text]+label {
-     color: #2196F3;
-   }
-   .input-field input[type=text]:not(.browser-default):focus:not([readonly])+label{
-	color: #2196F3;
-   }
-   .input-field input[type=text],.input-field input[type=text]:not(.browser-default):focus:not([readonly]){
-     border-bottom: 1px solid #2196F3;
-     box-shadow: 0 1px 0 0 #2196F3;
-   }
-   
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #2196F3;
-   }
-        
+
+.input-field label {
+  color: #2196F3;
+}
+.input-field input[type=text]+label {
+  color: #2196F3;
+}
+.input-field input[type=text]:not(.browser-default):focus:not([readonly])+label{
+  color: #2196F3;
+}
+.input-field input[type=text],.input-field input[type=text]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid #2196F3;
+  box-shadow: 0 1px 0 0 #2196F3;
+}
+
+
+.input-field .prefix.active {
+  color: #2196F3;
+}
+*/
