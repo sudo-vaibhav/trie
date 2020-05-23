@@ -22,28 +22,3 @@ h1{
 #search-input{
   text-transform: uppercase;
 }
-/* 
-.input-field .prefix{
-  color: #2196F3;
-}
-
-
-.input-field label {
-  color: #2196F3;
-}
-.input-field input[type=text]+label {
-  color: #2196F3;
-}
-.input-field input[type=text]:not(.browser-default):focus:not([readonly])+label{
-  color: #2196F3;
-}
-.input-field input[type=text],.input-field input[type=text]:not(.browser-default):focus:not([readonly]){
-  border-bottom: 1px solid #2196F3;
-  box-shadow: 0 1px 0 0 #2196F3;
-}
-
-
-.input-field .prefix.active {
-  color: #2196F3;
-}
-*/

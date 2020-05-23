@@ -5,6 +5,7 @@ class trieNode{
     constructor(){
         this.terminationCount = 0; //marks the number of strings that end at a particular node
         this.childrenNodes = {} //stores the children of each trieNode
+        this.facultyMatches = [] //contains data related to faculty with the matching name
     }
 }
 
@@ -19,8 +20,11 @@ class trie {
         if(baseNode.terminationCount>0){
             console.log("near match found")
             console.log(name)
-            matches.push(name)
+            console.log(baseNode.facultyMatches)
+            matches = matches.concat(baseNode)
+            console.log(matches)
         }
+
         for( const childKey of childrenKeys){
             this.findNearMatches(childrenNodes[childKey],name+childKey,matches)
         }
@@ -53,22 +57,26 @@ class trie {
         else{
             //then report exact matches first
             console.log(`${baseNode.terminationCount} exact matches of ${q} found in trie`)
+            const results = baseNode.facultyMatches //adds exact matches if any to the results
+            console.log("facultyMatches ", baseNode.facultyMatches);
             
             //then check children of currentNode to find near matches
-            let matches= []
+            let matches = []
             for(let i=0;i<baseNode.terminationCount;i++){
-                matches.push(q)
+                matches = matches.concat(baseNode.facultyMatches)
             }
+
             this.findNearMatches(baseNode,q,matches)
+            console.log(matches)
             return matches
         }
         
     }
     
     //method to insert string s in trie
-    insert(s){
+    insert(faculty){
         let currentNode = this.root
-        for(const character of s){
+        for(const character of faculty.name){
             //checks if child node from corresponding character already exists
             if(Object.keys(currentNode.childrenNodes).includes(character)){
                 //child node already exists
@@ -86,6 +94,10 @@ class trie {
         
         //increasing termination count for last child node where string ends
         currentNode.terminationCount += 1;
+        currentNode.facultyMatches.push(faculty)
+        console.log("insertion complete!")
+        console.log(currentNode)
+        
     }
     
     insertMultiple(data){
