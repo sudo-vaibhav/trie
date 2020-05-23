@@ -46,8 +46,12 @@ const updateModals = (data) =>{
                                                         <th>
                                                                 Mobile Number
                                                         </th>
-                                                        <td>
-                                                                ${faculty.mobile}
+                                                        <td style="display: flex; justify-content: space-between;">
+                                                                <div>${faculty.mobile}</div>
+                                                                <div style="display: flex;">
+                                                                        <a target="_blank" href="https://wa.me/91${faculty.mobile}/" class="icon whatsapp-icon"></a>
+                                                                        <a target="_blank"  href="tel:${faculty.mobile}" class="icon phone-icon"></a>
+                                                                </div>
                                                         </td>
                                                 <tr>
                                                 <tr>
@@ -77,7 +81,9 @@ const updateModals = (data) =>{
                                         </table>
                                 </div>
                                 <div class="modal-footer">
-                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+                                                <b class="teal-text">Close</b>
+                                        </a>
                                 </div>
                         </div>
                 `
