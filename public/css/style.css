@@ -36,10 +36,20 @@ h1{
   margin: 0 1rem;
 }
 
+.name-search #search-input, .name-search label[for="search-input"]{
+  margin-left: 4rem;
+}
+
 .whatsapp-icon{
   background-image: url("../icons/whatsapp.svg") ;
 }
 
 .phone-icon{
   background-image: url("../icons/phone.svg")
+}
+#search-input{
+  margin: 8px 0;
+}
+#search-form,.name-search{
+  width: 100%;
 }
