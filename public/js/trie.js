@@ -53,7 +53,6 @@ class trie {
         }
         else{
             //then report exact matches first
-            const results = baseNode.facultyMatches //adds exact matches if any to the results
             
             //then check children of currentNode to find near matches
             let matches = {
