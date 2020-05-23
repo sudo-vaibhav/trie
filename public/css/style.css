@@ -59,3 +59,7 @@ h1{
     width: 95%;
   }
 }
+
+.modal{
+  max-height: 80vh;
+}

@@ -41,16 +41,18 @@ class trie {
     
     query(q){
         //search for the trie for given query first
+        let t1= performance.now()
         let baseNode = this.queryExact(q)
         
         if(!baseNode){  //checks first if an exact match even exists
             
             //means "q" not found in trie
-            return []
+            let t2 = performance.now()
+            return {data: [], time: t2-t1}
+
         }
         else{
             //then report exact matches first
-            console.log(`${baseNode.terminationCount} exact matches of ${q} found in trie`)
             const results = baseNode.facultyMatches //adds exact matches if any to the results
             
             //then check children of currentNode to find near matches
@@ -63,9 +65,15 @@ class trie {
             }
             
             this.findNearMatches(baseNode,q,matches)
-            return matches["data"]  //returns data to be update in UI
+            
+            let t2 = performance.now()
+
+            return {
+                        data: matches["data"],
+                        time:t2-t1
+                   }  //returns data to be update in UI
+            
         }
-        
     }
     
     //method to insert string s in trie
@@ -81,7 +89,6 @@ class trie {
             }
             else{
                 //child node doesn't exist so new one has to be created
-                //console.log(`child node had to be created for character ${character}`)
                 currentNode.childrenNodes[character] = new trieNode()
             }
             

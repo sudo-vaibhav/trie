@@ -27,7 +27,19 @@
         <div class="row">
           <div class="col input-field name-search">
             <i class="material-icons prefix" style="font-size: 4rem;">search</i>
-            <input type="text" name="search-input" id="search-input" onkeyup="facultyQuery()" />
+            <input type="text" name="search-input" id="search-input" oninput="facultyQuery()" />
+          </div>
+        </div>
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="col">
+            <div class="switch">
+              <label style="color: black; font-weight: 700;">
+                Linear Search
+                <input type="checkbox" id="search-type" checked>
+                <span class="lever"></span>
+                TRIE Search
+              </label>
+            </div>
           </div>
         </div>
         <div class="row" style="display:flex; justify-content: center;">
@@ -42,8 +54,19 @@
         </ul>
       </div>
       <div class="row">
+        <div class="col time-div">
+
+        </div>
+      </div>
+      <div class="row">
         <div class="col card-panel search-error z-depth-4 teal white-text" style="display:none;">
           <p>No matching results found! Please try again.</p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col">
+          <span  class="grey-text text-darken-1">Rapid processing powered by TRIE</span>
         </div>
       </div>
     </div>
@@ -51,6 +74,7 @@
     <script src="./js/facultyData.js"></script>
     <script src="./js/trie.js"></script>
     <script src="./js/ui.js"></script>
+    <script src="./js/linearQuery.js"></script>
     <script>
       window.addEventListener("DOMContentLoaded",event=>{
         M.AutoInit();

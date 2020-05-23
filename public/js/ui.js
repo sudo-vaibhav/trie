@@ -17,12 +17,20 @@ const facultyQuery = ()=>{
         
         //extracting query string
         const query = form["search-input"].value.toUpperCase()
-        console.log(`searching for ${query}`)
-        const results = t.query(query)
-        
-        console.log("results ", results);
+        let response = undefined
+        if(document.querySelector("#search-type").value == "on"){ //means trie search is required
+                console.log("trie searching: ")
+                response = t.query(query)
+        }
+        else{
+                console.log("linear searching: ")
+                response = linearQuery(query)
+        }
+        const results = response["data"]
+        const time = response["time"]
         updateModals(results)
         updateSearchItems(results)
+        updateTime(time)
 }
 
 const updateModals = (data) =>{
@@ -135,3 +143,8 @@ const updateSearchItems = (data) => {
                 }
         }
         
+
+const updateTime = (time)=>{
+        console.log(time)
+        document.querySelector(".time-div").innerHTML = `querying finished in ${time} milliseconds`
+}
