@@ -1,6 +1,3 @@
-//list containing data in linear fashion
-//const data = require("./facultyNames")
-
 class trieNode{
     constructor(){
         this.terminationCount = 0; //marks the number of strings that end at a particular node
@@ -18,13 +15,10 @@ class trie {
         let childrenNodes = baseNode.childrenNodes
         let childrenKeys  = Object.keys(childrenNodes)
         if(baseNode.terminationCount>0){
-            console.log("near match found")
-            console.log(name)
-            console.log(baseNode.facultyMatches)
-            matches = matches.concat(baseNode)
-            console.log(matches)
+            //means near match found
+            matches["data"] = matches["data"].concat(baseNode.facultyMatches)
         }
-
+        
         for( const childKey of childrenKeys){
             this.findNearMatches(childrenNodes[childKey],name+childKey,matches)
         }
@@ -40,7 +34,6 @@ class trie {
             else{
                 return null //match not found, ends query function here
             }
-            //console.log(character)
         }
         
         return currentNode  //useful for other methods like query 
@@ -51,24 +44,26 @@ class trie {
         let baseNode = this.queryExact(q)
         
         if(!baseNode){  //checks first if an exact match even exists
-            console.log(`${q} not found in trie`)
+            
+            //means "q" not found in trie
             return []
         }
         else{
             //then report exact matches first
             console.log(`${baseNode.terminationCount} exact matches of ${q} found in trie`)
             const results = baseNode.facultyMatches //adds exact matches if any to the results
-            console.log("facultyMatches ", baseNode.facultyMatches);
             
             //then check children of currentNode to find near matches
-            let matches = []
-            for(let i=0;i<baseNode.terminationCount;i++){
-                matches = matches.concat(baseNode.facultyMatches)
+            let matches = {
+                data: []    // empty array indicates no exact or near match found
             }
 
+            for(let i=0;i<baseNode.terminationCount;i++){
+                matches["data"] = matches["data"].concat(baseNode.facultyMatches)
+            }
+            
             this.findNearMatches(baseNode,q,matches)
-            console.log(matches)
-            return matches
+            return matches["data"]  //returns data to be update in UI
         }
         
     }
@@ -77,10 +72,12 @@ class trie {
     insert(faculty){
         let currentNode = this.root
         for(const character of faculty.name){
+
             //checks if child node from corresponding character already exists
             if(Object.keys(currentNode.childrenNodes).includes(character)){
-                //child node already exists
-                //console.log(`child node already exists for character ${character}`)
+            
+                //child node already exists and doesn't need to be created newly
+            
             }
             else{
                 //child node doesn't exist so new one has to be created
@@ -94,9 +91,9 @@ class trie {
         
         //increasing termination count for last child node where string ends
         currentNode.terminationCount += 1;
+        
+        //add info of current faculty to trie
         currentNode.facultyMatches.push(faculty)
-        console.log("insertion complete!")
-        console.log(currentNode)
         
     }
     
@@ -109,13 +106,4 @@ class trie {
 
 
 t= new trie()
-t.insertMultiple(data)
-
-
-// for(const x of data){
-//     if(x.startsWith("MURUGAN")){
-//         //console.log(x)
-//     }
-// }
-//t.query("MURUGAN V")
-// you can query for presence of any faculty name in records using t.query() here
+t.insertMultiple(data)  // stores data stored in linear fashion in a trie

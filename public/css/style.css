@@ -9,8 +9,8 @@ h1{
 
 .main-container{
   display:flex;
+  margin-top:25vh;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
   
@@ -21,4 +21,8 @@ h1{
 }
 #search-input{
   text-transform: uppercase;
+}
+
+.search-error p{
+  margin: 0.5rem;
 }
