@@ -15,6 +15,9 @@ h1{
   height: 100vh;
   
 }
+.search-item  .secondary-content .material-icons{
+  cursor: pointer;
+}
 
 .collection{
   border: 0px;

@@ -19,11 +19,10 @@ const facultyQuery = ()=>{
         const query = form["search-input"].value.toUpperCase()
         let response = undefined
         if(document.querySelector("#search-type").value == "on"){ //means trie search is required
-                console.log("trie searching: ")
                 response = t.query(query)
         }
         else{
-                console.log("linear searching: ")
+               
                 response = linearQuery(query)
         }
         const results = response["data"]
@@ -61,7 +60,7 @@ const updateModals = (data) =>{
                 </th>
                 <td style="display: flex; justify-content: space-between;">
                 <div>${faculty.mobile}</div>
-                <div style="display: flex;">
+                <div style="display: flex; align-items: center;">
                 <a target="_blank" href="https://wa.me/91${faculty.mobile}/" class="icon whatsapp-icon"></a>
                 <a target="_blank"  href="tel:${faculty.mobile}" class="icon phone-icon"></a>
                 </div>
@@ -116,7 +115,7 @@ const updateSearchItems = (data) => {
         if (data.length>0){
                 data.forEach(faculty => {
                         let html = `
-                        <li class="collection-item" >
+                        <li class="collection-item search-item" >
                                 <div style="display: flex;">   
                                        <div style="flex:1;">
                                         ${faculty.name}
@@ -145,6 +144,5 @@ const updateSearchItems = (data) => {
         
 
 const updateTime = (time)=>{
-        console.log(time)
         document.querySelector(".time-div").innerHTML = `querying finished in ${time} milliseconds`
 }
